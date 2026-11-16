@@ -60,3 +60,27 @@ Los datos se almacenan en variables en memoria en `poc_login_server.py`.
 
 ### 3.3 Plan de Resolución
 Implementar base de datos SQLite (`p5x_server.db`) e integrar consultas transaccionales en los manejadores de movimiento (`CSSceneMoveStop` 1209) e inicialización (`SCInitData` 1102).
+
+---
+
+## 4. Addendum al archivar el proyecto (16/11/2026)
+
+Estado real al detener el trabajo, con evidencia:
+
+- **Baseline restaurado**: los 7 archivos modificados durante los experimentos (3 bundles y
+  4 tablas/configs de integridad) fueron restaurados desde `.bak` y verificados por SHA-256.
+  `D:\secret\P5X` quedó bit-a-bit igual al original.
+- **Corrección de métrica**: el catálogo `105/assetMapName.txt` indexa las variantes
+  canónicas en mayúsculas (`UI-..._EN.prefab`, BKDR 983437303) y **no** indexa las
+  minúsculas. De las 26 claves de `005/ui_mainui498d6b82.bundle`, solo **1** coincide
+  exactamente con el catálogo en su forma minúscula; el resto no está indexado en absoluto
+  (el catálogo cubre solo assets *addressable*, no es 1:1 con `m_Container`).
+- **Prueba A/B (capa 3)**: se reempaquetó `005` con `packer='original'`, flags `0x243`
+  idénticos al original, renombrando 2 claves. La última corrida (16/11 14:38) **terminó en
+  un crash del cliente** antes de entrar a escena. Causa no determinada.
+  **Conclusión: el dictamen "capa 3 confirmada" sigue siendo PROBABLE, no confirmado**, y
+  tampoco está demostrado que el reempaque con `packer='original'` sea aceptado por Unity.
+- **Siguiente paso sugerido** para quien retome: verificar el bundle repackeado de forma
+  aislada (¿lo abre Unity?) antes de volver a correr el cliente completo; y probar la vía
+  de normalización en runtime (case-insensitive) como alternativa que no toca assets.
+
