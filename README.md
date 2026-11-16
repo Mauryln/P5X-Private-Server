@@ -58,7 +58,7 @@ Cada fila indica si está **confirmado en runtime** o solo a nivel de protocolo.
 `evidence/screenshots/hud-missing-shibuya-2026-11-15.png`
 
 Login completo y mundo de Shibuya jugable (cámara, personaje, NPCs con diálogo, movimiento).
-Se ven los atajos `[M] Map` y `[J] Missions`, pero los paneles no se instancian: **no hay
+Todabia no hay Hud funcional **no hay
 minimapa, menú, SNS ni barra de combate**. Esa captura documenta exactamente el bloqueo:
 el mundo funciona, la interfaz no. No hay captura de HUD funcional porque ese hito no se
 alcanzó.
@@ -136,7 +136,7 @@ administrador para el paso 2. Nada de esto requiere internet para funcionar.
 | 2 | Combate ausente | el cliente solo reproduce animaciones; el servidor debe calcular todo | máquina de turnos + datos reales de ConfData |
 | 3 | Sin persistencia | estado en memoria | SQLite: cuenta, personaje, inventario, posición |
 | 4 | Tablas maestras | ConfData cifrado | descifrar y mapear monstruos, skills, misiones |
-| 5 | Fidelidad no verificable | no existe el servidor original | declarar cada campo como derivado / aproximado / desconocido |
+| 5 | Fidelidad no verificable | el servidor original esta encriptado | declarar cada campo como derivado / aproximado / desconocido |
 
 **Orden recomendado para retomar:** HUD → ConfData → vertical slice de combate → persistencia.
 
