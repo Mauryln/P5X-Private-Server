@@ -1,0 +1,4 @@
+* text=auto eol=lf
+*.png binary
+*.bundle binary
+*.py text eol=lf

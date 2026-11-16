@@ -1,0 +1,70 @@
+# ==========================================================
+#  P5X preservation study — repositorio de documentación y código propio
+#  NO se versiona contenido del juego, binarios ni datos extraídos.
+# ==========================================================
+
+# --- Copia del juego / instalación ---
+P5X/
+work/
+**/P5X/
+**/OuterPackage/
+**/StreamingAssets/
+**/ZeusSetting/
+**/il2cpp_data/
+**/Bundles/
+
+# --- Assets y binarios del juego ---
+*.bundle
+*.bundle.bak
+*.unity3d
+*.assets
+*.resS
+*.resource
+*.ab
+*.dat
+*.bytes
+*.lj
+*.dll
+*.exe
+*.pdb
+*.so
+*.dylib
+*.apk
+*.obb
+
+# --- Datos derivados / extraídos (copyright del juego) ---
+assetMapName.txt
+I18NAssetMap.xml
+allMsgPb*
+msg.proto
+options.proto
+*.descriptor
+decompressed_*
+clean_assetmap*
+
+# --- Capturas y registros de ejecución ---
+logs/
+runs/
+*.log
+*.jsonl
+poc_frame_log*.json
+Player*.log
+log_2026_*.log
+
+# --- Entorno local ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+*.local
+*.secret
+notes-local/
+
+# --- SO / editores ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
