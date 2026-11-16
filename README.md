@@ -74,7 +74,8 @@ alcanzó.
 - **Offline:** se neutralizó el verificador de paquetes (`OuterPackageFileChecker`) y se
   vaciaron las URLs remotas de hotfix/parcheo para que el cliente no re-descargue nada.
   Los ajustes locales exactos (tamaños en las tablas de integridad y flags de configuración)
-  están listados en `docs/01-status/STATUS_AND_REMAINING_WORK.md`, sección 1.3. No se
+  están listados en `docs/01-status/STATUS_AND_REMAINING_WORK.md` (§1, "Neutralización del
+  Patcher y Verificador de Integridad"). No se
   distribuyen: son cambios sobre *tu* copia y deben revertirse para jugar en línea.
 - **HUD (bloqueo principal):** el catálogo de assets indexa los nombres canónicos con
   mayúsculas (`UI-…_EN.prefab`), pero el `m_Container` de los bundles empaquetados tiene las
@@ -118,7 +119,7 @@ básicos de red local. Nada de esto requiere internet para funcionar.
 
 | # | Bloqueo | Causa raíz | Próximo paso sugerido |
 |---|---|---|---|
-| 1 | HUD no se instancia | case mismatch catálogo ↔ `m_Container` | reempaquetar con `packer='original'` (flags `0x243`) renombrando claves, o normalizar en runtime |
+| 1 | HUD no se instancia | case mismatch catálogo ↔ `m_Container` (*probable*: falta cerrar la prueba A/B) | reempaquetar con `packer='original'` (flags `0x243`) renombrando claves, o normalizar en runtime |
 | 2 | Combate ausente | el cliente solo reproduce animaciones; el servidor debe calcular todo | máquina de turnos + datos reales de ConfData |
 | 3 | Sin persistencia | estado en memoria | SQLite: cuenta, personaje, inventario, posición |
 | 4 | Tablas maestras | ConfData cifrado | descifrar y mapear monstruos, skills, misiones |
