@@ -9,6 +9,8 @@ sobre tu copia local.
 | `bundle_repack.py` | reempaqueta un AssetBundle renombrando claves de `m_Container`, preservando los flags del header (`packer='original'`) |
 | `verify_assets.py` | manifiesto SHA-256 de archivos del cliente: verificar integridad y restaurar desde `.bak` |
 | `run_test.py` | arnés: levanta servidor, lanza cliente, espera patrones en `Player.log` y devuelve PASS/FAIL |
+| `hosts_local.ps1` | agrega/consulta/quita la redirección `eulogin.p5xjpupd.com` → `127.0.0.1` (admin, respalda `hosts`) |
+| `offline_config.ps1` | pone la copia del cliente en modo offline (sin hotfix ni CDN) y revierte con `-Revert` |
 
 ## Requisitos
 
@@ -21,6 +23,13 @@ Python 3.10+. `verify_assets.py` y `run_test.py` son stdlib puro.
 ## Ejemplos
 
 ```powershell
+# redirección de login (consola de administrador)
+powershell -ExecutionPolicy Bypass -File hosts_local.ps1 -Action Add
+
+# cliente offline: primero en seco, después aplicar
+powershell -ExecutionPolicy Bypass -File offline_config.ps1 -GameRoot "D:\tu-copia\P5X" -DryRun
+powershell -ExecutionPolicy Bypass -File offline_config.ps1 -GameRoot "D:\tu-copia\P5X"
+
 # ¿dónde se resuelve un prefab de UI?
 python parse_asset_map.py --map "<copia>\client\OuterPackage\Bundles\Windows\105\assetMapName.txt" `
     --lookup UI-zhujiemian-ditu-map_EN.prefab

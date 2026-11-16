@@ -86,8 +86,8 @@ alcanzó.
 
 ## 4. Cómo reproducirlo
 
-**Requisitos:** Windows x64, Python 3.10+, tu copia legal del cliente de PC y conocimientos
-básicos de red local. Nada de esto requiere internet para funcionar.
+**Requisitos:** Windows x64, Python 3.10+, tu copia legal del cliente de PC y PowerShell como
+administrador para el paso 2. Nada de esto requiere internet para funcionar.
 
 1. **Servidor**
    ```powershell
@@ -96,22 +96,35 @@ básicos de red local. Nada de esto requiere internet para funcionar.
    ```
    Escucha en `127.0.0.1:10403`.
 
-2. **Redirección local del host de login** (temporal, revertir al terminar)
+2. **Redirección local del host de login** (requiere consola de administrador)
+   ```powershell
+   powershell -ExecutionPolicy Bypass -File tools\hosts_local.ps1 -Action Add
+   powershell -ExecutionPolicy Bypass -File tools\hosts_local.ps1 -Action Status
    ```
-   # C:\Windows\System32\drivers\etc\hosts
-   127.0.0.1 eulogin.p5xjpupd.com
-   ```
+   Apunta `eulogin.p5xjpupd.com` a `127.0.0.1`, es idempotente y respalda el archivo en
+   `hosts.p5x-backup`. Al terminar: `-Action Remove`.
 
-3. **Cliente**
+3. **Modo offline del cliente** (evita hotfix y descargas de CloudFront)
+   ```powershell
+   # ver qué cambiaría
+   powershell -ExecutionPolicy Bypass -File tools\offline_config.ps1 -GameRoot "D:\tu-copia\P5X" -DryRun
+   # aplicar
+   powershell -ExecutionPolicy Bypass -File tools\offline_config.ps1 -GameRoot "D:\tu-copia\P5X"
+   ```
+   Vacía `serverUrls`, `remoteURL`, `gameResUrl` y `gameUpdateAssetUrl`, y apaga
+   `openHotfix` / `updateResFirst`. Crea `<archivo>.p5x-backup` por cada archivo tocado
+   (solo JSON de configuración: no toca binarios ni bundles). Revertir: `-Revert`.
+
+4. **Cliente**
    ```powershell
    <ruta-a-tu-copia>\P5X.exe
    ```
 
-4. **Resultado esperado hoy:** login completo → selección de personaje → Shibuya con cámara,
+5. **Resultado esperado hoy:** login completo → selección de personaje → Shibuya con cámara,
    movimiento y NPCs. **Sin HUD** (bloqueo conocido).
 
-> Usá una copia de trabajo del cliente. Este proyecto no modifica binarios ni tu instalación
-> original, y no debe usarse contra servicios en línea.
+> Al terminar la sesión: `hosts_local.ps1 -Action Remove` y `offline_config.ps1 -Revert`
+> dejan la copia como estaba. No uses estos pasos contra servicios en línea.
 
 ---
 
