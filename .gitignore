@@ -32,7 +32,7 @@ work/
 *.apk
 *.obb
 
-# --- Datos derivados / extraídos (copyright del juego) ---
+# --- Material derivado / extraídos (copyright del juego) ---
 assetMapName.txt
 I18NAssetMap.xml
 allMsgPb*
@@ -41,6 +41,12 @@ options.proto
 *.descriptor
 decompressed_*
 clean_assetmap*
+
+# --- Carpeta de trabajo / backups de experimentos ---
+scratch/
+_scratch/
+*.p5x-backup
+hosts.p5x-backup
 
 # --- Capturas y registros de ejecución ---
 logs/
